@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel</title>
+</head>
+<body>
+    <h2>Bem-vindo ao Painel</h2>
+    <p>Informações do servidor:</p>
+    <pre id="infoServidor">Carregando...</pre>
+
+    <button onclick="window.location.href='terminal.html'">TERMINAL</button>
+
+    <script>
+        document.getElementById("infoServidor").innerText = "Servidor rodando...\nIP: 192.168.0.1\nStatus: OK";
+    </script>
+</body>
+</html>

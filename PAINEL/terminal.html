@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terminal do Servidor</title>
+</head>
+<body>
+    <h2>Terminal do Servidor</h2>
+    <textarea id="console" rows="10" cols="50" readonly></textarea>
+    <br>
+    <input type="text" id="comando" placeholder="Digite um comando">
+    <button onclick="executarComando()">Enviar</button>
+
+    <script>
+        async function executarComando() {
+            let comando = document.getElementById("comando").value;
+            let consoleOutput = document.getElementById("console");
+            
+            consoleOutput.value += "> " + comando + "\n";
+            
+            let resposta = await fetch("http://localhost:3000/executar", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ comando })
+            });
+            
+            let data = await resposta.json();
+            consoleOutput.value += data.saida + "\n";
+            document.getElementById("comando").value = "";
+        }
+    </script>
+</body>
+</html>
